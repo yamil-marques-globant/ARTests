@@ -1,6 +1,7 @@
 package cn.easyar.samples.helloarqrcode.rendering;
 
 import android.content.Context;
+import android.content.Intent;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -59,7 +60,7 @@ public class ModelLoader {
     }
 
     public void parseModel(String stringModel){
-        /*TODO*/
+
         String[] lines = stringModel.split("\n");
         modelLinesCount = lines.length;
 
@@ -76,14 +77,44 @@ public class ModelLoader {
                 String[] verts = line.split("[ ]");
                 vertexList.add(new Vector3(Float.parseFloat(verts[1]), Float.parseFloat(verts[2]), Float.parseFloat(verts[3])));
             }
+
+            /*Vertex normals*/
+            if (line.startsWith("vn ")){
+                String[] normals = line.split("[ ]");
+                normalList.add(new Vector3(Float.parseFloat(normals[1]), Float.parseFloat(normals[2]), Float.parseFloat(normals[3])));
+            }
+
+            /*Texture coordinates*/
+            if (line.startsWith("vt ")){
+                String[] texture = line.split("[ ]");
+                /*Nothing for now*/
+                continue;
+            }
+
+            /*Poligonal face element*/
+            if (line.startsWith("f ")){
+                String[] faces = line.split("[ ]");
+
+                String[] x = faces[1].split("[/]");
+                String[] y = faces[2].split("[/]");
+                String[] z = faces[3].split("[/]");
+
+                /*Faces indices start from 1 , so we subtract one*/
+                facesList.add(new Face(
+                        (Integer.valueOf(x[0])-1),
+                        (Integer.valueOf(y[0])-1),
+                        (Integer.valueOf(z[0])-1),
+                        (Integer.valueOf(x[2])-1)));
+
+                numFaces++;
+            }
         }
-    }
 
 
-    /*Populate part of the vertex list*/
-    public void parseVertexList(String[] verts){
+
         /*TODO*/
     }
+
 
     class Face{
         int x, y, z, n;
