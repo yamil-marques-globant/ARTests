@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/home/yamil/ASProjects/Facebook/EasyAR/AndroidSamples/HelloARQRCode/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.4.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="/home/yamil/ASProjects/Facebook/EasyAR/AndroidSamples/HelloARQRCode/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-23.4.0_0a10b1930e46ecbdcbd4df8a3c4b37cd344449ec.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/yamil/ASProjects/Facebook/EasyAR/AndroidSamples/HelloARQRCode/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/libs/internal_impl-23.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="/home/yamil/ASProjects/Facebook/EasyAR/AndroidSamples/HelloARQRCode/app/build/intermediates/pre-dexed/debug/internal_impl-23.4.0_b3cd632b1475934f3062cff061b6248c11f86a26.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/yamil/ASProjects/Facebook/EasyAR/AndroidSamples/HelloARQRCode/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.4.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="/home/yamil/ASProjects/Facebook/EasyAR/AndroidSamples/HelloARQRCode/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-23.4.0_8c8fa6bb176eeb195d21b41b24870edc3a960b8f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/yamil/ASProjects/Facebook/EasyAR/AndroidSamples/HelloARQRCode/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="/home/yamil/ASProjects/Facebook/EasyAR/AndroidSamples/HelloARQRCode/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.4.0_684a2ee391ec479f4385eb894d963451911f1bd4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/yamil/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/23.4.0/support-annotations-23.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="/home/yamil/ASProjects/Facebook/EasyAR/AndroidSamples/HelloARQRCode/app/build/intermediates/pre-dexed/debug/support-annotations-23.4.0_ba0c9380bdc15bfc891470f7c7fda46c77ba1bdb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/yamil/ASProjects/Facebook/EasyAR/AndroidSamples/HelloARQRCode/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="/home/yamil/ASProjects/Facebook/EasyAR/AndroidSamples/HelloARQRCode/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.4.0_ce20e35eb4b06ad2b67d306515a4d9809700bf3c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/yamil/ASProjects/Facebook/EasyAR/AndroidSamples/HelloARQRCode/app/libs/EasyAR.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="a927dd0d114d0323e6cdabaa7bb91be57c83ba9e">
+        <dex dex="/home/yamil/ASProjects/Facebook/EasyAR/AndroidSamples/HelloARQRCode/app/build/intermediates/pre-dexed/debug/EasyAR_891eae86aee23cc98be677dc714c409a18f3ed0d.jar" />
+    </item>
+
+</items>
