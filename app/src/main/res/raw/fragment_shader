@@ -1,9 +1,0 @@
-/* Creating vertex shader
-* Vertex shader: is responsible for handling a 3D object's vertices
-* Pixel shader: responsible for coloring the 3D object's pixels */
-
-precision mediump float;
-
-void main() {
-    gl_FragColor = vec4(1, 0.5, 0, 1.0);
-}
