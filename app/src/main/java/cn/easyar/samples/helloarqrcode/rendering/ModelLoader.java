@@ -7,7 +7,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
+import java.nio.ShortBuffer;
 import java.util.ArrayList;
 
 /* Class used to load .obj and get all data needed from it */
@@ -18,25 +21,25 @@ public class ModelLoader {
 
     private ArrayList<Vector3> vertexList;
     private ArrayList<Vector3> normalList;
-    private ArrayList<Vector3> textureList;
+    /*private ArrayList<Vector3> textureList;*/
     private ArrayList<Face> facesList;
-    private int numFaces;
+    public int numFaces;
 
-    private short[] indices;
-    private float[] verts;
-    private float[] norms;
+    public short[] indices;
+    public float[] verts;
+    /*private float[] norms;*/
 
-    private float[] vtx;
-    private FloatBuffer vertsBuffer;
+    /*private float[] vtx;*/
+    public FloatBuffer vertsBuffer;/*
     private FloatBuffer textsBuffer;
-    private FloatBuffer normsBuffer;
-    private FloatBuffer indicesBuffer;
+    private FloatBuffer normsBuffer;*/
+    public ShortBuffer indicesBuffer;
 
     public ModelLoader(Context context){
         this.context = context;
         vertexList = new ArrayList<>();
         normalList = new ArrayList<>();
-        textureList = new ArrayList<>();
+        /*textureList = new ArrayList<>();*/
         facesList = new ArrayList<>();
     }
 
@@ -104,15 +107,55 @@ public class ModelLoader {
                         (Integer.valueOf(x[0])-1),
                         (Integer.valueOf(y[0])-1),
                         (Integer.valueOf(z[0])-1),
-                        (Integer.valueOf(x[2])-1)));
+                        (Integer.valueOf(x[2])-1))); /*TODO check this line code*/
 
                 numFaces++;
             }
         }
 
 
+        /*Indices setup*/
+        int indx = 0;
+        indices = new short[numFaces * 3];
+        for(int i=0; i < numFaces; i++){
+            indices[indx++] = (short) facesList.get(i).x;
+            indices[indx++] = (short) facesList.get(i).y;
+            indices[indx++] = (short) facesList.get(i).z;
+        }
 
-        /*TODO*/
+        /*Vertex */
+        indx = 0;
+        verts = new float[vertexList.size() * 3];
+        for (int i=0; i < vertexList.size(); i++){
+            verts[indx++] = vertexList.get(i).x;
+            verts[indx++] = vertexList.get(i).y;
+            verts[indx++] = vertexList.get(i).z;
+        }
+
+
+       /* indx = 0;
+        vtx = new float[numFaces*9];
+        for(int i = 0; i < numFaces; i++)
+        {
+            vtx[indx++] = vertexList.get(facesList.get(i).x).x;
+            vtx[indx++] = vertexList.get(facesList.get(i).x).y;
+            vtx[indx++] = vertexList.get(facesList.get(i).x).z;
+
+            vtx[indx++] = vertexList.get(facesList.get(i).y).x;
+            vtx[indx++] = vertexList.get(facesList.get(i).y).y;
+            vtx[indx++] = vertexList.get(facesList.get(i).y).z;
+
+            vtx[indx++] = vertexList.get(facesList.get(i).z).x;
+            vtx[indx++] = vertexList.get(facesList.get(i).z).y;
+            vtx[indx++] = vertexList.get(facesList.get(i).z).z;
+
+        }*/
+
+        vertsBuffer = ByteBuffer.allocateDirect(verts.length*4).order(ByteOrder.nativeOrder()).asFloatBuffer();
+        vertsBuffer.put(verts).position(0);
+
+        indicesBuffer = ByteBuffer.allocateDirect(indices.length * 2).order(ByteOrder.nativeOrder()).asShortBuffer();
+        indicesBuffer.put(indices).position(0);
     }
 
 

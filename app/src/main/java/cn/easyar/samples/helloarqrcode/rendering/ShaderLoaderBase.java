@@ -1,11 +1,14 @@
 package cn.easyar.samples.helloarqrcode.rendering;
 
+import android.content.Context;
 import android.opengl.GLES20;
 import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public abstract class ShaderLoaderBase {
 
@@ -13,15 +16,18 @@ public abstract class ShaderLoaderBase {
     private int vertexShaderId;
     private int fragmentShaderId;
 
-    public ShaderLoaderBase(String vertexShaderFile, String fragmentShaderFile){
-        vertexShaderId = loadShader(vertexShaderFile, GLES20.GL_VERTEX_SHADER);
-        fragmentShaderId = loadShader(fragmentShaderFile, GLES20.GL_FRAGMENT_SHADER);
+    public ShaderLoaderBase(Context context, int vertexShaderFileRes, int fragmentShaderFileRes){
+        vertexShaderId = loadShader(context, vertexShaderFileRes, GLES20.GL_VERTEX_SHADER);
+        fragmentShaderId = loadShader(context, fragmentShaderFileRes, GLES20.GL_FRAGMENT_SHADER);
         programId = GLES20.glCreateProgram();
         GLES20.glAttachShader(programId, vertexShaderId);
         GLES20.glAttachShader(programId, fragmentShaderId);
         GLES20.glLinkProgram(programId);
         GLES20.glValidateProgram(programId);
-        bindAttributes();
+    }
+
+    public int getProgram(){
+        return programId;
     }
 
     public void start(){
@@ -41,8 +47,6 @@ public abstract class ShaderLoaderBase {
         GLES20.glDeleteProgram(programId);
     }
 
-    protected abstract void bindAttributes();
-
     /* Takes in the number of the attribute list in the VAO that we want to bind and it will take the variable name in the
     * shader code that we want to bind that attribute to */
     protected void bindAttribute(int attribute, String variableName){
@@ -53,10 +57,15 @@ public abstract class ShaderLoaderBase {
     /** Relevant info
      * @param type could be one of {@link GLES20#GL_VERTEX_SHADER} or {@link GLES20#GL_FRAGMENT_SHADER}
      * */
-    private static int loadShader(String file, int type){
+    private static int loadShader(Context context, int rawRes, int type){
         StringBuilder shaderSource = new StringBuilder();
         try{
-            BufferedReader reader = new BufferedReader(new FileReader(file));
+
+            InputStream inputStream = context.getResources().openRawResource(rawRes);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+
+            /*BufferedReader reader = new BufferedReader(new FileReader(file));*/
+
             String line;
             while ((line = reader.readLine()) != null){
                 shaderSource.append(line).append("\n");

@@ -1,14 +1,11 @@
 package cn.easyar.samples.helloarqrcode.rendering;
 
+import android.content.Context;
+
 public class ModelShaderLoader extends ShaderLoaderBase {
 
-    public ModelShaderLoader(String vertexShaderFile, String fragmentShaderFile) {
-        super(vertexShaderFile, fragmentShaderFile);
+    public ModelShaderLoader(Context context, int vertexShaderFileRes, int fragmentShaderFileRes) {
+        super(context, vertexShaderFileRes, fragmentShaderFileRes);
     }
 
-    @Override
-    protected void bindAttributes() {
-        //super.bindAttribute(0,"position");
-        /*TODO - check later*/
-    }
 }

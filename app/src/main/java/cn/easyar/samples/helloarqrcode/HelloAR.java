@@ -8,6 +8,7 @@
 
 package cn.easyar.samples.helloarqrcode;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import android.content.Context;
@@ -31,6 +32,7 @@ import cn.easyar.TargetInstance;
 import cn.easyar.TargetStatus;
 import cn.easyar.Vec2I;
 import cn.easyar.Vec4I;
+import cn.easyar.samples.helloarqrcode.rendering.ModelRendererTwo;
 
 public class HelloAR
 {
@@ -42,6 +44,7 @@ public class HelloAR
     /*private BoxRenderer box_renderer;*/
     private ModelRenderer modelRenderer;
     private BoxRenderer boxRenderer;
+    private ModelRendererTwo modelRendererTwo;
 
 
     private QRCodeScanner qrcode_scanner;
@@ -142,6 +145,9 @@ public class HelloAR
         boxRenderer = null;
         modelRenderer = null;
 
+        modelRendererTwo.cleanUp();
+        modelRendererTwo = null;
+
         if (videobg_renderer != null) {
             videobg_renderer.dispose();
             videobg_renderer = null;
@@ -194,8 +200,15 @@ public class HelloAR
 
         /*modelRenderer = new ModelRenderer(context);*/
 
-        boxRenderer = new BoxRenderer();
-        boxRenderer.init();
+        /*boxRenderer = new BoxRenderer();
+        boxRenderer.init();*/
+
+        try {
+            modelRendererTwo = new ModelRendererTwo(context);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void resizeGL(int width, int height)
@@ -265,10 +278,13 @@ public class HelloAR
                         box_renderer.render(camera.projectionGL(0.2f, 500.f), targetInstance.poseGL(), imagetarget.size());
                     }*/
 
-                    if (boxRenderer/*modelRenderer*/ != null){
+                    if (modelRendererTwo/*boxRenderer*//*modelRenderer*/ != null){
+
+                        modelRendererTwo.render(camera.projectionGL(0.2f, 500f), targetInstance.poseGL(), imagetarget.size());
+
                         /*0.2f, 500.f*/
 
-                        boxRenderer.render(camera.projectionGL(0.2f, 500f), targetInstance.poseGL(), imagetarget.size());
+                        /*boxRenderer.render(camera.projectionGL(0.2f, 500f), targetInstance.poseGL(), imagetarget.size());*/
 
                         /*modelRenderer.render(camera.projectionGL(0.2f, 500.f), targetInstance.poseGL(), imagetarget.size());*/
 
