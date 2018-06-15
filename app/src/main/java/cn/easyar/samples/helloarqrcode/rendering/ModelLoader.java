@@ -106,8 +106,8 @@ public class ModelLoader {
                 facesList.add(new Face(
                         (Integer.valueOf(x[0])-1),
                         (Integer.valueOf(y[0])-1),
-                        (Integer.valueOf(z[0])-1),
-                        (Integer.valueOf(x[2])-1))); /*TODO check this line code*/
+                        (Integer.valueOf(z[0])-1)));
+                        /*(Integer.valueOf(x[2])-1)));*/ /*TODO check this line code*/
 
                 numFaces++;
             }
@@ -166,7 +166,7 @@ public class ModelLoader {
             x = coords[0];
             y = coords[1];
             z = coords[2];
-            n = coords[3];
+            //n = coords[3];
         }
     }
 
