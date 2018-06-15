@@ -18,7 +18,7 @@ import cn.easyar.samples.helloarqrcode.R;
 public class ModelRendererTwo {
 
     /*Basic data*/
-    private final String modelName = "model";
+    private final String modelName = "andy";
     private final int vertexShaderRes = R.raw.vertex_shader_two;
     private final int fragmentShaderRes = R.raw.fragment_shader_two;
 
@@ -66,15 +66,17 @@ public class ModelRendererTwo {
 
     public void render(Matrix44F projectionMatrix, Matrix44F cameraview, Vec2F size){
         /*Color*/
-        GLES20.glEnableVertexAttribArray(colorHandler);
-        GLES20.glVertexAttribPointer(colorHandler, 3, GLES20.GL_UNSIGNED_BYTE, true, 0, modelLoader.vertsBuffer);
+        /*GLES20.glEnableVertexAttribArray(colorHandler);
+        GLES20.glVertexAttribPointer(colorHandler, 4, GLES20.GL_BYTE, false, 0, modelLoader.vertsBuffer);*/
 
         /*Coord*/
         GLES20.glEnableVertexAttribArray(coordHandler);
         GLES20.glVertexAttribPointer(coordHandler, 3, GLES20.GL_FLOAT, false, 0, modelLoader.vertsBuffer);
 
         /*Uniform matrix*/
+        Matrix.rotateM(cameraview.data, 0, 100, 1f, 0, 0);
         Matrix.rotateM(cameraview.data, 0, getRotation(), 0, 1f, 0);
+        Matrix.scaleM(cameraview.data, 0, 5,5,5);
         GLES20.glUniformMatrix4fv(transfHandler, 1, false, cameraview.data, 0);
         GLES20.glUniformMatrix4fv(projHandler, 1, false, projectionMatrix.data, 0);
 
