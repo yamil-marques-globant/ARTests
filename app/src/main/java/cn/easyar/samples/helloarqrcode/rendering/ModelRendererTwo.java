@@ -35,7 +35,7 @@ public class ModelRendererTwo {
 
         /*Model init*/
         modelLoader = new ModelLoader(context);
-        modelLoader.load("monkey");
+        modelLoader.load(modelName);
 
         /*Matrix init*/
         modelMat = new float[16];
@@ -60,24 +60,18 @@ public class ModelRendererTwo {
     }
 
     public void render(Matrix44F projectionMatrix, Matrix44F cameraview, Vec2F size){
-        /*TODO rendering itself*/
-
-        modelLoader.vertsBuffer.position(0);
+        /*Color*/
+        GLES20.glEnableVertexAttribArray(colorHandler);
+        GLES20.glVertexAttribPointer(colorHandler, 4, GLES20.GL_UNSIGNED_BYTE, true, 0, modelLoader.vertsBuffer);
 
         /*Coord*/
         GLES20.glEnableVertexAttribArray(coordHandler);
-        GLES20.glVertexAttribPointer(coordHandler, 3, GLES20.GL_FLOAT, false, 0, 0);
-        /*GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER,);*/
+        GLES20.glVertexAttribPointer(coordHandler, 3, GLES20.GL_FLOAT, false, 0, modelLoader.vertsBuffer);
 
-        /*Color*/
-        GLES20.glEnableVertexAttribArray(colorHandler);
-        GLES20.glVertexAttribPointer(colorHandler, 4, GLES20.GL_UNSIGNED_BYTE, false, 0, 0);
-
-        /*Uniform*/
+        /*Uniform matrix*/
         GLES20.glUniformMatrix4fv(transfHandler, 1, false, cameraview.data, 0);
         GLES20.glUniformMatrix4fv(projHandler, 1, false, projectionMatrix.data, 0);
 
-        /*Drawing*/
         GLES20.glDrawElements(GLES20.GL_TRIANGLES, modelLoader.numFaces * 3, GLES20.GL_UNSIGNED_SHORT, modelLoader.indicesBuffer);
     }
 
